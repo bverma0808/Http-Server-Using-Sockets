@@ -23,14 +23,15 @@ The class containing main method is named as "HKServer"
 open 3 or 4 terminals, and then run the following commands , please make sure to use same port number on which server is running:=>
 
  api/request :
-   i.   curl localhost:5050/api/request?connId=1\&timeout=90
-   ii.  curl localhost:5050/api/request?connId=2\&timeout=150    
-   iii.  curl localhost:5050/api/request?connId=3\&timeout=180    
-   and so on...
-   In all of the above terminals you should wait for the time specified by you in timeout
+  e.g.
+     curl localhost:5050/api/request?connId=1\&timeout=90
+     curl localhost:5050/api/request?connId=2\&timeout=150    
+     curl localhost:5050/api/request?connId=3\&timeout=180    
+     and so on...
+  In all of the above terminals you should wait for the time specified by you in timeout
   
  api/serverStatus:
-    Then in some other terminal, run command:=>
+    Then in some other terminal, run command
     curl localhost:5050/api/serverStatus
     you will get the status of all the running processes
   
