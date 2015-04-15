@@ -22,21 +22,20 @@ The class containing main method is named as "HKServer"
 #Testing Commands to test the running server:=>
 open 3 or 4 terminals, and then run the following commands , please make sure to use same port number on which server is running:=>
 
- api/request :
-  e.g.
-     curl localhost:5050/api/request?connId=1\&timeout=90
-     curl localhost:5050/api/request?connId=2\&timeout=150    
-     curl localhost:5050/api/request?connId=3\&timeout=180    
+ 	api/request :
+     	curl localhost:5050/api/request?connId=1\&timeout=90
+     	curl localhost:5050/api/request?connId=2\&timeout=150    
+     	curl localhost:5050/api/request?connId=3\&timeout=180    
      and so on...
   In all of the above terminals you should wait for the time specified by you in timeout
   
- api/serverStatus:
-    Then in some other terminal, run command
-    curl localhost:5050/api/serverStatus
+ 	api/serverStatus:
+    	Then in some other terminal, run command
+    	curl localhost:5050/api/serverStatus
     you will get the status of all the running processes
   
- api/kill:
-    curl --request PUT localhost:5050/api/kill -d {"connId":1}
+ 	api/kill:
+    	curl --request PUT localhost:5050/api/kill -d {"connId":1}
     it will kill the desired process , if exists otherwise send invalid connId message
 
   
