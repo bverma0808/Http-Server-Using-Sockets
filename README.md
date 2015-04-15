@@ -1,16 +1,12 @@
 # Http-Server-Using-Sockets
-# author: Bharat Verma
 
-***************************
-How to compile :=>
-***************************
+
+#How to compile :=>
 Go into the /src/ directory , and run command :=>
    javac *.java   
    
    
-*******************
-How to run:=>
-*******************
+#How to run:=>
 The class containing main method is named as "HKServer"
    So you can run the following command to start a server :
           java HKServer
@@ -23,37 +19,27 @@ The class containing main method is named as "HKServer"
 		 And the server will be started at port 7575
 
 		 
-***********************************************************
-Testing Commands to test the running server:=>
-***********************************************************
+#Testing Commands to test the running server:=>
 open 3 or 4 terminals, and then run the following commands , please make sure to use same port number on which server is running:=>
- api/request
- ===========
-  i.   curl localhost:5050/api/request?connId=1\&timeout=90
-  ii.  curl localhost:5050/api/request?connId=2\&timeout=150    
-  iii.  curl localhost:5050/api/request?connId=3\&timeout=180    
+
+ api/request :
+   i.   curl localhost:5050/api/request?connId=1\&timeout=90
+   ii.  curl localhost:5050/api/request?connId=2\&timeout=150    
+   iii.  curl localhost:5050/api/request?connId=3\&timeout=180    
+   and so on...
+   In all of the above terminals you should wait for the time specified by you in timeout
   
-  and so on...
-  In all of the above terminals you should wait for the time specified by you in timeout
-  
- api/serverStatus 
- ============
-Then in some other terminal, run command:=>
+ api/serverStatus:
+    Then in some other terminal, run command:=>
     curl localhost:5050/api/serverStatus
-  you will get the status of all the running processes
+    you will get the status of all the running processes
   
-  api/kill
-  =====
-  curl --request PUT localhost:5050/api/kill -d {"connId":1}
-  
-  it will kill the desired process , if exists otherwise send invalid connId message
+ api/kill:
+    curl --request PUT localhost:5050/api/kill -d {"connId":1}
+    it will kill the desired process , if exists otherwise send invalid connId message
 
   
-  
-****************************************
-Server functioning unwrapped :=> 
-****************************************
-
+#Server functioning unwrapped :=> 
 1. When the server is started then it will go into an infinite loop waiting for the client sockets to connect. 
 2. Whenever a new client socket connection arrives at the server , then it makes a new Object of  "ClientHandler" class to handle that client socket and process it in a separate thread. So that it can accepts further new client connections.
 3. Inside ClientHandler thread, the input stream of the client's socket is read and then the request string is read.
@@ -64,11 +50,8 @@ Server functioning unwrapped :=>
 8. If the request is of "serverStatus" type then , the status of the currently active connections is sent to the client, by reading it from connectionPool
 9. If the request is of "kill" type then the corresponding connection (if found) is deleted, otherwise appropriate message is sent to the client
 
-
-*******************************************
-Server's Replaceable Modules :=> 
-*******************************************
+#Server's Replaceable Modules :=> 
 Some modules in the server can be easily replaceable, such as RequestParser , RequestRouter, ConnectionPool, means their is no such dependency of the code over these modules. The code is not tightly coupled.
-> To replace the RequestParser we just need to make a new class that implements the Parser interface
-> To replace the RequestRouter we just need to make a new class that implements the Router interface
-> Right now ConnectionPool uses a HashMap for storing the Connections, later on we can even use some different data-structure depending on our need.
+ 1. To replace the RequestParser we just need to make a new class that implements the Parser interface
+ 2. To replace the RequestRouter we just need to make a new class that implements the Router interface
+ 3. Right now ConnectionPool uses a HashMap for storing the Connections, later on we can even use some different data-structure depending on our need.
